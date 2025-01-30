@@ -27,8 +27,17 @@
   ];
   let colorPickers = [
     { name: "Font Color", value: "#FFFFFF" },
-    { name: "Background Color", value: "#FF5000" },
+    { name: "Background Color", value: "#FC5903" },
   ];
+  // Define categories and their respective options
+  const categories = [
+    { name: "Content Alignment", options: ["Center", "Right", "Left"] },
+    { name: "Language", options: ["English", "French", "Spanish"] },
+  ];
+
+  // Variables to store selected values
+  let selectedAlignment = categories[0].options[0];
+  let selectedLanguage = categories[1].options[0];
 </script>
 
 {#snippet inputs()}
@@ -55,9 +64,24 @@
   {#each colorPickers as colorPicker}
     <div class="input-container">
       <p class="input-p">{colorPicker.name}</p>
-      <input type="color" bind:value={colorPicker.value} class="rounded-2xl w-16 h-16" />
+      <input
+        type="color"
+        bind:value={colorPicker.value}
+        class="rounded-2xl w-16 h-16"
+      />
     </div>
   {/each}
+  <div class="input-container">
+    {#each categories as category}
+      <p class="input-p mb-2">{category.name}</p>
+      <select
+        class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-10">
+        {#each category.options as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </select>
+    {/each}
+  </div>
 {/snippet}
 
 <div>
@@ -75,18 +99,18 @@
 <!-- Adjusted the parent div to remove extra space -->
 <div class="flex items-start justify-center">
   <div
-    class="PanelContainer ring-2 ring-gray-200 rounded-md w-11/12 bg-white mt-10 relative"
+    class="PanelContainer ring-2 ring-gray-200 rounded-md w-11/12 bg-white mt-10 relative h-screen mb-10"
     style="
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      /* height removed to prevent extra space */
-    "
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
   >
     <!-- The card will be at the top center of the container -->
     <div
       id="card"
       class="absolute top-10 left-1/2 transform -translate-x-1/2"
-      style="width: {rangeSliders[1].value}px; height: {rangeSliders[2].value}px; background-color: {colorPickers[1].value}; border-radius: {rangeSliders[0].value}px">
-    </div>
+      style="width: {rangeSliders[1].value}px; height: {rangeSliders[2]
+        .value}px; background-color: {colorPickers[1]
+        .value}; border-radius: {rangeSliders[0].value}px"
+    ></div>
     {@render inputs()}
   </div>
 </div>
@@ -103,5 +127,8 @@
   }
   .input-p {
     @apply text-lg font-semibold tracking-wider text-gray-800;
+  }
+  .option {
+    @apply bg-white text-black;
   }
 </style>
