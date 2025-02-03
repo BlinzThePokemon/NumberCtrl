@@ -1,6 +1,6 @@
 <script>
   import { slide } from "svelte/transition";
-  import Footer from './Components/footer.svelte'
+  import Footer from "./Components/footer.svelte";
   let borderRadius = 50;
   let userInputs = [{ name: "Title", value: "Event Name" }];
   let rangeSliders = [
@@ -25,17 +25,29 @@
       max: "375",
       placeholder: "Enter a number",
     },
+    {
+      name: "Font Size",
+      value: "30",
+      min: "0",
+      max: "70",
+      placeholder: "Enter"
+    }
   ];
   let colorPickers = [
     { name: "Font Color", value: "#FFFFFF" },
     { name: "Background Color", value: "#FC5903" },
   ];
   // Define categories and their respective options
-  const categories = [
+  let categories = [
     { name: "Content Alignment", options: ["Center", "Right", "Left"] },
     { name: "Language", options: ["English", "French", "Spanish"] },
-    { name: "Font Weight", options: ["Bold", "800", "700", "600", "500", "400", "300", "200", "100"] }
+    {
+      name: "Font Weight",
+      options: ["Bold", "800", "700", "600", "500", "400", "300", "200", "100"],
+    },
   ];
+
+  let datePickers = [{ name: "Date Of Event", value: "2025-3-31" }];
 
   // Variables to store selected values
   let selectedAlignment = categories[0].options[0];
@@ -47,7 +59,13 @@
   {#each userInputs as input}
     <div class="input-container">
       <p class="input-p">{input.name}</p>
-      <input class="input" type="text" bind:value={input.value} /> 
+      <input class="input" type="text" bind:value={input.value} />
+    </div>
+  {/each}
+  {#each datePickers as datePicker}
+    <div class="input-container">
+      <p class="input-p mb-2">{datePicker.name}</p>
+      <input type="date" bind:value={datePicker.value} class="input" />
     </div>
   {/each}
   {#each rangeSliders as rangeSlider, index}
@@ -74,23 +92,22 @@
       />
     </div>
   {/each}
-  <div class="input-container">
-    {#each categories as category}
+  {#each categories as category}
+    <div class="input-container">
       <p class="input-p mb-2">{category.name}</p>
       <select
-        class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-10 w-52">
+        class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-2 w-52"
+      >
         {#each category.options as option}
           <option class="option" value={option}>{option}</option>
         {/each}
       </select>
-    {/each}
-  </div>
+    </div>
+  {/each}
 {/snippet}
 
 <div>
-  <h1
-    class="text-4xl text-blue-600 font-semibold justify-center mt flex mb-4"
-  >
+  <h1 class="text-4xl text-blue-600 font-semibold justify-center mt flex mb-4 mt-20">
     Create A Countdown Clock For Your Website
   </h1>
   <p class="justify-center flex text-gray-500 text-lg md:text-sm sm:text-xs">
@@ -112,9 +129,11 @@
       class="flex justify-center text-2xl absolute top-10 left-1/2 transform -translate-x-1/2"
       style="width: {rangeSliders[1].value}px; height: {rangeSliders[2]
         .value}px; background-color: {colorPickers[1]
-        .value}; border-radius: {rangeSliders[0].value}px; color: {colorPickers[0]
-        .value}; font-weight: 600;"
-    ><p class="mt-2">{userInputs[0].value}</p></div>
+        .value}; border-radius: {rangeSliders[0]
+        .value}px; color: {colorPickers[0].value}; font-size: {rangeSliders[3].value}px;"
+    >
+      <p class="mt-2">{userInputs[0].value}</p>
+    </div>
     {@render inputsLeft()}
   </div>
 </div>
@@ -122,6 +141,9 @@
 <Footer />
 
 <style>
+  /* :global(body){
+    transform: scale(1);
+  } */
   .input {
     @apply hover:ring-1 ring-gray-500 flex border-solid border-gray-400 border-[1px] px-5 py-2 rounded-lg font-bold;
   }
