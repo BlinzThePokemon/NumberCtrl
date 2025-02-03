@@ -75,7 +75,7 @@
     {#each categories as category}
       <p class="input-p mb-2">{category.name}</p>
       <select
-        class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-10">
+        class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-10 w-52">
         {#each category.options as option}
           <option value={option}>{option}</option>
         {/each}
