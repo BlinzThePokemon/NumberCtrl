@@ -1,7 +1,8 @@
 <script>
   import { slide } from "svelte/transition";
+  import Footer from './Components/footer.svelte'
   let borderRadius = 50;
-  let userInputs = [{ name: "Title", value: "Event" }];
+  let userInputs = [{ name: "Title", value: "Event Name" }];
   let rangeSliders = [
     {
       name: "Border Radius",
@@ -33,18 +34,20 @@
   const categories = [
     { name: "Content Alignment", options: ["Center", "Right", "Left"] },
     { name: "Language", options: ["English", "French", "Spanish"] },
+    { name: "Font Weight", options: ["Bold", "800", "700", "600", "500", "400", "300", "200", "100"] }
   ];
 
   // Variables to store selected values
   let selectedAlignment = categories[0].options[0];
   let selectedLanguage = categories[1].options[0];
+  let selectedFontweight = categories[2].options[3];
 </script>
 
-{#snippet inputs()}
+{#snippet inputsLeft()}
   {#each userInputs as input}
     <div class="input-container">
       <p class="input-p">{input.name}</p>
-      <input class="input" type="text" bind:value={input.value} />
+      <input class="input" type="text" bind:value={input.value} /> 
     </div>
   {/each}
   {#each rangeSliders as rangeSlider, index}
@@ -77,7 +80,7 @@
       <select
         class="select bg-white text-black text-md font-semibold rounded-lg hover:ring-2 mb-10 w-52">
         {#each category.options as option}
-          <option value={option}>{option}</option>
+          <option class="option" value={option}>{option}</option>
         {/each}
       </select>
     {/each}
@@ -86,7 +89,7 @@
 
 <div>
   <h1
-    class="text-4xl text-blue-600 font-semibold justify-center mt-10 flex mb-4"
+    class="text-4xl text-blue-600 font-semibold justify-center mt flex mb-4"
   >
     Create A Countdown Clock For Your Website
   </h1>
@@ -99,21 +102,24 @@
 <!-- Adjusted the parent div to remove extra space -->
 <div class="flex items-start justify-center">
   <div
-    class="PanelContainer ring-2 ring-gray-200 rounded-md w-11/12 bg-white mt-10 relative h-screen mb-10"
+    class="PanelContainer ring-2 ring-gray-200 rounded-md w-11/12 bg-white mt-10 relative h-full mb-10"
     style="
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
   >
     <!-- The card will be at the top center of the container -->
     <div
       id="card"
-      class="absolute top-10 left-1/2 transform -translate-x-1/2"
+      class="flex justify-center text-2xl absolute top-10 left-1/2 transform -translate-x-1/2"
       style="width: {rangeSliders[1].value}px; height: {rangeSliders[2]
         .value}px; background-color: {colorPickers[1]
-        .value}; border-radius: {rangeSliders[0].value}px"
-    ></div>
-    {@render inputs()}
+        .value}; border-radius: {rangeSliders[0].value}px; color: {colorPickers[0]
+        .value}; font-weight: 600;"
+    ><p class="mt-2">{userInputs[0].value}</p></div>
+    {@render inputsLeft()}
   </div>
 </div>
+
+<Footer />
 
 <style>
   .input {
