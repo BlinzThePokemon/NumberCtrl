@@ -141,9 +141,6 @@
 <Footer />
 
 <style>
-  /* :global(body){
-    transform: scale(1);
-  } */
   .input {
     @apply hover:ring-1 ring-gray-500 flex border-solid border-gray-400 border-[1px] px-5 py-2 rounded-lg font-bold;
   }
