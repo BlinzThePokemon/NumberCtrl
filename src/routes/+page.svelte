@@ -1,5 +1,5 @@
 <script>
-  import Footer from "./Components/footer.svelte";
+  import Footer from "../lib/components/footer.svelte";
 
   // Initial values for user inputs, sliders, categories, etc.
   let userInputs = [{ name: "Title", value: "Event Name" }];

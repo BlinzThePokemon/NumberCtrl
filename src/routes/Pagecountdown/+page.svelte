@@ -6,7 +6,7 @@
   function navigateToCountdown() {
       countdownUUID = self.crypto.randomUUID()
       url = "/Pagecountdown/" + countdownUUID;
-      window.location.href = url;
+      goto(url)
   }
 </script>
 
