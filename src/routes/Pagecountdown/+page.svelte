@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation"
   // Keep the same URL as the original anchor tag
   let url = "";
   let countdownUUID;

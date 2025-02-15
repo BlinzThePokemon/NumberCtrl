@@ -44,7 +44,7 @@
 </div>
 
 <!-- Inputs Section -->
-<div class="flex justify-center">
+<div class="flex justify-center overflow-hidden">
   <div class="PanelContainer ring-2 ring-gray-200 rounded-md w-11/12 bg-white mt-10 relative h-full mb-10 flex justify-end" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);">
     <!-- The card with dynamic styles -->
     <div id="card" class="flex justify-center text-2xl absolute top-10 left-1/2 transform -translate-x-1/2"
